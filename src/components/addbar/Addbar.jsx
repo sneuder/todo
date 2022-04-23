@@ -12,6 +12,8 @@ const Addbar = () => {
     <form onSubmit={(e) => {
       e.preventDefault();
       todo.name = e.target[0].value;
+      const length = JSON.parse(localStorage.getItem("todos-todoapp"))?.length + 1;
+      todo.id = length || 1
       addTodos(todo);
     }}>
       <input type="text" placeholder="Add Todo" />
