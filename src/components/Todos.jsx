@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { getTodos } from "../utils/utils";
+import { getTodos, completeTodo } from "../utils/utils";
 
 import styled from "styled-components";
 
 const Todos = () => {
-  const [todos, setTodos] = useState([]);
-  const state = JSON.parse(localStorage.getItem("todos-todoapp"));
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos-todoapp")) || []);
   const pathname = useLocation().pathname;
 
   useEffect(() => {
@@ -22,15 +21,15 @@ const Todos = () => {
     if (pathname === "/completed") {
       setTodos([...getTodos("completed")]);
     }
-  }, [pathname, state]);
+  }, [pathname, todos]);
 
   return (
     <div>
-      {todos?.map((todo, index) => {
-        const { name, done } = todo;
+      {todos?.map((todo) => {
+        const { name, id, done } = todo;
         return (
-          <ContainerTodo>
-            <Input type="checkbox" placeholder="Add Todo" />
+          <ContainerTodo key={id}>
+            <Input type="checkbox" placeholder="Add Todo" checked={done} onChange={() => completeTodo(todo)}/>
             <Label>{name}</Label>
           </ContainerTodo>
         );
