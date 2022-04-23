@@ -11,15 +11,15 @@ const Todos = () => {
 
   useEffect(() => {
     if (pathname === "/") {
-      setTodos(getTodos("all"));
+      setTodos([...getTodos("all")]);
     }
 
     if (pathname === "/active") {
-      setTodos(getTodos("active"));
+      setTodos([...getTodos("active")]);
     }
 
     if (pathname === "/completed") {
-      setTodos(getTodos("completed"));
+      setTodos([...getTodos("completed")]);
     }
   }, [pathname]);
 
