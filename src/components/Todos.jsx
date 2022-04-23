@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 const Todos = () => {
   const [todos, setTodos] = useState([]);
+  const state = JSON.parse(localStorage.getItem("todos-todoapp"));
   const pathname = useLocation().pathname;
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const Todos = () => {
     if (pathname === "/completed") {
       setTodos([...getTodos("completed")]);
     }
-  }, [pathname]);
+  }, [pathname, state]);
 
   return (
     <div>
