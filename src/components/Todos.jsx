@@ -11,21 +11,28 @@ const Todos = () => {
 
   useEffect(() => {
     if (pathname === "/") {
+      setTodos(getTodos("all"));
     }
 
     if (pathname === "/active") {
+      setTodos(getTodos("active"));
     }
 
     if (pathname === "/completed") {
+      setTodos(getTodos("completed"));
     }
   }, [pathname]);
 
   return (
     <div>
-      <ContainerTodo>
-        <Input type="checkbox" placeholder="Add Todo" />
-        <Label>Hola</Label>
-      </ContainerTodo>
+      {todos?.map((todo, index) => {
+        return (
+          <ContainerTodo>
+            <Input type="checkbox" placeholder="Add Todo" />
+            <Label>Hola</Label>
+          </ContainerTodo>
+        );
+      })}
     </div>
   );
 };
