@@ -27,10 +27,11 @@ const Todos = () => {
   return (
     <div>
       {todos?.map((todo, index) => {
+        const { name, done } = todo;
         return (
           <ContainerTodo>
             <Input type="checkbox" placeholder="Add Todo" />
-            <Label>Hola</Label>
+            <Label>{name}</Label>
           </ContainerTodo>
         );
       })}

@@ -10,6 +10,6 @@ export const getTodos = (filter) => {
 
 export const addTodos = (todo) => {
   let todos = JSON.parse(localStorage.getItem('todos-todoapp')) || [];
-  todos.push(todo);
+  todos.unshift(todo);
   localStorage.setItem('todos-todoapp', JSON.stringify(todos));
 }
