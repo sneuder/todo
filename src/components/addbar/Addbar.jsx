@@ -1,24 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 
-import { addTodos } from "../../utils/utils";
+import { Form, InputText, InputSubmit } from "./Components";
+
+import { addTodos, getTodos } from "../../utils/utils";
+import { updateTodos } from "../../redux/actions";
 
 const Addbar = () => {
+  const dispatch = useDispatch();
   let todo = {
     name: "",
     done: false
   }
 
   return (
-    <form onSubmit={(e) => {
+    <Form onSubmit={(e) => {
       e.preventDefault();
       todo.name = e.target[0].value;
       const length = JSON.parse(localStorage.getItem("todos-todoapp"))?.length + 1;
       todo.id = length || 1
       addTodos(todo);
+      dispatch(updateTodos(getTodos()));
     }}>
-      <input type="text" placeholder="Add Todo" />
-      <input type="submit" value="Add" />
-    </form>
+      <InputText type="text" placeholder="Add Todo" />
+      <InputSubmit type="submit" value="Add" />
+    </Form>
   );
 };
 
