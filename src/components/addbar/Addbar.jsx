@@ -18,11 +18,13 @@ const Addbar = () => {
   return (
     <Form onSubmit={(e) => {
       e.preventDefault();
+      if(e.target[0].value == "") return; 
       todo.name = e.target[0].value;
       const length = JSON.parse(localStorage.getItem("todos-todoapp"))?.length + 1;
       todo.id = length || 1
       addTodos(todo);
       dispatch(updateTodos(getTodos(pathname)));
+      e.target[0].value = "";
     }}>
       <InputText type="text" placeholder="Add Todo" />
       <InputSubmit type="submit" value="Add" />
