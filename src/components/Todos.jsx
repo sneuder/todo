@@ -1,15 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { updateTodos } from "../redux/actions";
 import { completeTodo, getTodos } from "../utils/utils";
 
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 const Todos = () => {
   const todos = useSelector((state) => state.shownTodos);
+  const pathname = useLocation().pathname;
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(updateTodos(getTodos(pathname)));
+  }, [pathname]);
 
   return (
     <div>
@@ -23,7 +28,7 @@ const Todos = () => {
               checked={done}
               onChange={() => {
                 completeTodo(todo);
-                dispatch(updateTodos(getTodos()));
+                dispatch(updateTodos(getTodos(pathname)));
               }}
             />
             <Label>{name}</Label>
