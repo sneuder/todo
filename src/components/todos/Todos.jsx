@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { ContainerTodo, Input, Label, Delete, IconDelete } from "./Components";
+import { Background, ContainerTodo, Input, Label, Delete, IconDelete } from "./Components";
 
 import { updateTodos } from "../../redux/actions";
 import {
@@ -24,7 +24,7 @@ const Todos = () => {
   }, [pathname]);
 
   return (
-    <div>
+    <Background>
       {todos?.map((todo) => {
         const { name, id, done } = todo;
         return (
@@ -49,10 +49,10 @@ const Todos = () => {
 
       {pathname === "/completed" && todos?.length !== 0 && (
         <Delete onClick={() => dispatch(updateTodos(removeAllTodos(todos)))}>
-          <IconDelete icon={faTrashCan} /> Delete
+          Delete all
         </Delete>
       )}
-    </div>
+    </Background>
   );
 };
 

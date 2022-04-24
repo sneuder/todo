@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import {FontAwesomeIcon as Icon} from '@fortawesome/react-fontawesome';
 
+export const Background = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const ContainerTodo = styled.div`
   display: flex;
   align-items: center;
@@ -30,7 +35,15 @@ export const Label = styled.label`
 `;
 
 export const Delete = styled.button`
-  padding: 0.5rem;
+  width: auto;
+  align-self: flex-end;
+  border: none;
+  background-color: #ff6961;
+  border-radius: 0.2rem;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.8rem;
+  cursor: pointer;
 `
 
 export const IconDelete = styled(Icon)`
