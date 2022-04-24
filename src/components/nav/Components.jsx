@@ -2,9 +2,8 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const Background = styled.nav`
-  display: flex;
-  justify-content: space-around;
-  border-bottom: 1px solid #bdbdbd;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   height: 2rem;
 `;
 
