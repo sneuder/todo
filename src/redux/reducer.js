@@ -2,11 +2,11 @@ const initialState = {
   shownTodos: [],
 }
 
-export const reducer = (state = initialState, payload)  => {
-  if(payload.type === 'UPDATE_TODOS') {
+export const reducer = (state = initialState, action)  => {
+  if(action.type === 'UPDATE_TODOS') {
     return {
       ...state,
-      shownTodos: [...payload.todo]
+      shownTodos: [...action.payload]
     }
   }
 

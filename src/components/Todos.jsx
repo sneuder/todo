@@ -1,27 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { getTodos, completeTodo } from "../utils/utils";
+import { completeTodo } from "../utils/utils";
 
 import styled from "styled-components";
 
 const Todos = () => {
-  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos-todoapp")) || []);
-  const pathname = useLocation().pathname;
-
-  useEffect(() => {
-    if (pathname === "/") {
-      setTodos([...getTodos("all")]);
-    }
-
-    if (pathname === "/active") {
-      setTodos([...getTodos("active")]);
-    }
-
-    if (pathname === "/completed") {
-      setTodos([...getTodos("completed")]);
-    }
-  }, [pathname, todos]);
+  const todos = useSelector((state) => state.shownTodos);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -29,7 +15,12 @@ const Todos = () => {
         const { name, id, done } = todo;
         return (
           <ContainerTodo key={id}>
-            <Input type="checkbox" placeholder="Add Todo" checked={done} onChange={() => completeTodo(todo)}/>
+            <Input
+              type="checkbox"
+              placeholder="Add Todo"
+              checked={done}
+              onChange={() => dispatch(completeTodo(todo))}
+            />
             <Label>{name}</Label>
           </ContainerTodo>
         );
@@ -41,6 +32,7 @@ const Todos = () => {
 const ContainerTodo = styled.div`
   display: flex;
   align-items: center;
+  padding: 0.5rem 0;
 `;
 
 const Input = styled.input`

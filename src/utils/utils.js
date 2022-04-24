@@ -37,4 +37,5 @@ export const completeTodo = (todo) => {
   });
 
   localStorage.setItem("todos-todoapp", JSON.stringify(todos));
+  return todos;
 };

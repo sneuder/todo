@@ -1,29 +1,66 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Route, NavLink, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { Header } from "./components/Header";
 import { Nav } from "./components/Nav";
 
-import styled from "styled-components";
-
 import Addbar from "./components/addbar/Addbar";
 import Todos from "./components/Todos";
 
+import { updateTodos } from "./redux/actions";
+import { getTodos } from "./utils/utils";
+
+import styled from "styled-components";
+
 function App() {
+  const pathname = useLocation().pathname;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    switch (pathname) {
+      case "/":
+        dispatch(updateTodos(getTodos("all")));
+        break;
+      case "/active":
+        dispatch(updateTodos(getTodos("active")));
+        break;
+      case "/completed":
+        dispatch(updateTodos(getTodos("completed")));
+        break;
+    }
+  }, []);
+
   return (
     <Background>
       <Header>#todo</Header>
       <Nav>
-        <Sections to='/'>All</Sections>
-        <Sections to='/active'>Active</Sections>
-        <Sections to='/completed'>Completed</Sections>
+        <Sections
+          $active={({ isActive }) => isActive}
+          to="/"
+          onClick={() => dispatch(updateTodos(getTodos("all")))}
+        >
+          All
+        </Sections>
+        <Sections
+          $active={({ isActive }) => isActive}
+          to="/active"
+          onClick={() => dispatch(updateTodos(getTodos("active")))}
+        >
+          Active
+        </Sections>
+        <Sections
+          $active={({ isActive }) => isActive}
+          to="/completed"
+          onClick={() => dispatch(updateTodos(getTodos("completed")))}
+        >
+          Completed
+        </Sections>
       </Nav>
       <Addbar />
-      <Routes>
-        <Route path="/" element={<Todos />} />
-        <Route path="/active" element={<Todos />} />
-        <Route path="/completed" element={<Todos />} />
-      </Routes>
+      <Route exact path="/" component={Todos} />
+      <Route exact path="/active" component={Todos} />
+      <Route exact path="/completed" component={Todos} />
     </Background>
   );
 }
@@ -36,4 +73,14 @@ const Background = styled.div`
   margin: auto;
 `;
 
-const Sections = styled(Link)``;
+const Sections = styled(NavLink)`
+  height: 100%;
+  padding: 0rem 1rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: #333333;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
