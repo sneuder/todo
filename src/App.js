@@ -5,7 +5,7 @@ import { Header } from "./components/Header";
 
 import Nav from "./components/nav/Nav";
 import Addbar from "./components/addbar/Addbar";
-import Todos from "./components/Todos";
+import Todos from "./components/todos/Todos";
 
 
 import styled from "styled-components";
