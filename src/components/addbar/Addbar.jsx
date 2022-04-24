@@ -5,9 +5,11 @@ import { Form, InputText, InputSubmit } from "./Components";
 
 import { addTodos, getTodos } from "../../utils/utils";
 import { updateTodos } from "../../redux/actions";
+import { useLocation } from "react-router-dom";
 
 const Addbar = () => {
   const dispatch = useDispatch();
+  const pathname = useLocation().pathname;
   let todo = {
     name: "",
     done: false
@@ -20,7 +22,7 @@ const Addbar = () => {
       const length = JSON.parse(localStorage.getItem("todos-todoapp"))?.length + 1;
       todo.id = length || 1
       addTodos(todo);
-      dispatch(updateTodos(getTodos()));
+      dispatch(updateTodos(getTodos(pathname)));
     }}>
       <InputText type="text" placeholder="Add Todo" />
       <InputSubmit type="submit" value="Add" />
