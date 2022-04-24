@@ -32,7 +32,6 @@ const Todos = () => {
             <Input
               type="checkbox"
               icon={Delete}
-              placeholder="Add Todo"
               checked={done}
               onChange={() => {
                 completeTodo(todo);

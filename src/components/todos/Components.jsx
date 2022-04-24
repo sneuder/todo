@@ -6,6 +6,20 @@ export const Background = styled.div`
   flex-direction: column;
 `;
 
+const Check = styled.div``;
+
+export const Delete = styled.button`
+  width: auto;
+  align-self: flex-end;
+  border: none;
+  background-color: #ff6961;
+  border-radius: 0.2rem;
+  color: #fff;
+  font-weight: 500;
+  padding: 0.8rem;
+  cursor: pointer;
+`;
+
 export const ContainerTodo = styled.div`
   display: flex;
   align-items: center;
@@ -25,10 +39,24 @@ export const Input = styled.input`
   &:active {
     transform: scale(0.9);
   }
-  
+
   &:checked {
     background-color: #2f80ed;
     border: 1px solid #2f80ed;
+
+    &::after {
+      content: "";
+      display: flex;
+      justify-content: center;
+      
+      transform: rotate(45deg);
+      height: 10px;
+      margin-top: 1px;
+      width: 4px;
+      margin-left: 5px;
+      border-bottom: 3px solid #fff;
+      border-right: 3px solid #fff;
+    }
   }
 `;
 
@@ -37,18 +65,6 @@ export const Label = styled.label`
   width: 100%;
   color: ${({ done }) => (done ? "#BDBDBD" : "none")};
   transition: all 0.3s ease;
-`;
-
-export const Delete = styled.button`
-  width: auto;
-  align-self: flex-end;
-  border: none;
-  background-color: #ff6961;
-  border-radius: 0.2rem;
-  color: #fff;
-  font-weight: 500;
-  padding: 0.8rem;
-  cursor: pointer;
 `;
 
 export const IconDelete = styled(Icon)`
