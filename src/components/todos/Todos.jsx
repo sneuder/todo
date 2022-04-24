@@ -31,6 +31,7 @@ const Todos = () => {
           <ContainerTodo key={id}>
             <Input
               type="checkbox"
+              icon={Delete}
               placeholder="Add Todo"
               checked={done}
               onChange={() => {
