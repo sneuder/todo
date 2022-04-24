@@ -39,6 +39,14 @@ const Background = styled.div`
   width: 50%;
   max-width: 500px;
   margin: auto;
+
+  @media (max-width: 820px) {
+    width: 80%;
+  }
+
+  @media (max-width: 400px) {
+    width: 90%;
+  }
 `;
 
 

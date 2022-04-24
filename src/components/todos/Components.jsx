@@ -13,9 +13,11 @@ export const Input = styled.input`
   border: 1px solid #828282;
   border-radius: 0.2rem;
   cursor: pointer;
+  transition: all 0.2s ease;
 
   &:checked {
-    background-color: #828282;
+    background-color: #2F80ED;
+    border: 1px solid #2F80ED;
   }
 `;
 

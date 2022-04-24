@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 export const Background = styled.nav`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid #bdbdbd;
   height: 2rem;
 `;
 
