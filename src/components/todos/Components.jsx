@@ -25,6 +25,8 @@ export const Input = styled.input`
 export const Label = styled.label`
   margin-left: 0.5rem;
   width: 100%;
+
+  text-decoration: ${({done}) => done ? 'line-through' : 'none'};
 `;
 
 export const Delete = styled.button`

@@ -38,7 +38,7 @@ const Todos = () => {
                 dispatch(updateTodos(getTodos(pathname)));
               }}
             />
-            <Label>{name}</Label>
+            <Label done={done}>{name}</Label>
             <IconDelete
               icon={faTrashCan}
               onClick={() => dispatch(updateTodos(removeTodo(todo)))}
