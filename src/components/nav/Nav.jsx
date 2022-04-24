@@ -6,13 +6,15 @@ import { Sections } from "./Components";
 const Nav = () => {
   return (
     <Background>
-      <Sections $active={({ isActive }) => isActive} to="/">
+      <Sections exact to="/" activeStyle={{fontWeight: "bold"}}>
         All
       </Sections>
-      <Sections $active={({ isActive }) => isActive} to="/active">
+
+      <Sections exact to="/active" activeStyle={{fontWeight: "bold"}}>
         Active
       </Sections>
-      <Sections $active={({ isActive }) => isActive} to="/completed">
+
+      <Sections exact to="/completed" activeStyle={{fontWeight: "bold"}}>
         Completed
       </Sections>
     </Background>

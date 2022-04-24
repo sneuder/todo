@@ -18,4 +18,5 @@ export const Sections = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
+
 `;
