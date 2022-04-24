@@ -1,12 +1,13 @@
 export const getTodos = (filter) => {
   let todos = JSON.parse(localStorage.getItem("todos-todoapp")) || [];
+  let location = filter || window.location.pathname;
 
-  switch (filter) {
-    case "all":
+  switch (location) {
+    case "/":
       return todos;
-    case "active":
+    case "/active":
       return todos.filter((todo) => todo.done !== true);
-    case "completed":
+    case "/completed":
       return todos.filter((todo) => todo.done !== false);
   }
 };

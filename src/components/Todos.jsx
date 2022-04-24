@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { completeTodo } from "../utils/utils";
+import { updateTodos } from "../redux/actions";
+import { completeTodo, getTodos } from "../utils/utils";
 
 import styled from "styled-components";
 
 const Todos = () => {
   const todos = useSelector((state) => state.shownTodos);
   const dispatch = useDispatch();
+
 
   return (
     <div>
@@ -19,7 +21,10 @@ const Todos = () => {
               type="checkbox"
               placeholder="Add Todo"
               checked={done}
-              onChange={() => dispatch(completeTodo(todo))}
+              onChange={() => {
+                completeTodo(todo);
+                dispatch(updateTodos(getTodos()));
+              }}
             />
             <Label>{name}</Label>
           </ContainerTodo>

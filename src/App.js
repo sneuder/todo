@@ -18,17 +18,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    switch (pathname) {
-      case "/":
-        dispatch(updateTodos(getTodos("all")));
-        break;
-      case "/active":
-        dispatch(updateTodos(getTodos("active")));
-        break;
-      case "/completed":
-        dispatch(updateTodos(getTodos("completed")));
-        break;
-    }
+    dispatch(updateTodos(getTodos()));
   }, []);
 
   return (
@@ -38,21 +28,21 @@ function App() {
         <Sections
           $active={({ isActive }) => isActive}
           to="/"
-          onClick={() => dispatch(updateTodos(getTodos("all")))}
+          onClick={() => dispatch(updateTodos(getTodos("/")))}
         >
           All
         </Sections>
         <Sections
           $active={({ isActive }) => isActive}
           to="/active"
-          onClick={() => dispatch(updateTodos(getTodos("active")))}
+          onClick={() => dispatch(updateTodos(getTodos("/active")))}
         >
           Active
         </Sections>
         <Sections
           $active={({ isActive }) => isActive}
           to="/completed"
-          onClick={() => dispatch(updateTodos(getTodos("completed")))}
+          onClick={() => dispatch(updateTodos(getTodos("/completed")))}
         >
           Completed
         </Sections>
