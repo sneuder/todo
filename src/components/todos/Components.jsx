@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {FontAwesomeIcon as Icon} from '@fortawesome/react-fontawesome';
 
 export const ContainerTodo = styled.div`
   display: flex;
@@ -23,8 +24,19 @@ export const Input = styled.input`
 
 export const Label = styled.label`
   margin-left: 0.5rem;
+  width: 100%;
 `;
 
 export const Delete = styled.button`
   padding: 0.5rem;
+`
+
+export const IconDelete = styled(Icon)`
+  cursor: pointer;
+  color: #BDBDBD;
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #ff6961;
+  }
 `

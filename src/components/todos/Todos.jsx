@@ -2,10 +2,12 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import { ContainerTodo, Input, Label, Delete } from "./Components";
+import { ContainerTodo, Input, Label, Delete, IconDelete } from "./Components";
 
 import { updateTodos } from "../../redux/actions";
 import { completeTodo, getTodos, removeAllTodos } from "../../utils/utils";
+
+import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
 const Todos = () => {
   const todos = useSelector((state) => state.shownTodos);
@@ -32,13 +34,14 @@ const Todos = () => {
               }}
             />
             <Label>{name}</Label>
+            <IconDelete icon={faTrashCan} />
           </ContainerTodo>
         );
       })}
 
       {pathname === "/completed" && todos?.length !== 0 && (
         <Delete onClick={() => dispatch(updateTodos(removeAllTodos(todos)))}>
-          Delete
+          <IconDelete icon={faTrashCan} /> Delete
         </Delete>
       )}
     </div>
