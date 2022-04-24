@@ -28,7 +28,7 @@ const Todos = () => {
       {todos?.map((todo) => {
         const { name, id, done } = todo;
         return (
-          <ContainerTodo key={id}>
+          <ContainerTodo key={id+done+name}>
             <Input
               type="checkbox"
               icon={Delete}
@@ -48,7 +48,7 @@ const Todos = () => {
       })}
 
       {pathname === "/completed" && todos?.length !== 0 && (
-        <Delete onClick={() => dispatch(updateTodos(removeAllTodos(todos)))}>
+        <Delete onClick={() => dispatch(updateTodos(removeAllTodos()))}>
           Delete all
         </Delete>
       )}
