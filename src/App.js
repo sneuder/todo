@@ -1,56 +1,34 @@
-import React, { useEffect } from "react";
-import { Route, NavLink, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 
 import { Header } from "./components/Header";
-import { Nav } from "./components/Nav";
 
+import Nav from "./components/nav/Nav";
 import Addbar from "./components/addbar/Addbar";
 import Todos from "./components/Todos";
 
-import { updateTodos } from "./redux/actions";
-import { getTodos } from "./utils/utils";
 
 import styled from "styled-components";
 
 function App() {
-  const pathname = useLocation().pathname;
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(updateTodos(getTodos()));
-  }, []);
 
   return (
     <Background>
       <Header>#todo</Header>
-      <Nav>
-        <Sections
-          $active={({ isActive }) => isActive}
-          to="/"
-          onClick={() => dispatch(updateTodos(getTodos("/")))}
-        >
-          All
-        </Sections>
-        <Sections
-          $active={({ isActive }) => isActive}
-          to="/active"
-          onClick={() => dispatch(updateTodos(getTodos("/active")))}
-        >
-          Active
-        </Sections>
-        <Sections
-          $active={({ isActive }) => isActive}
-          to="/completed"
-          onClick={() => dispatch(updateTodos(getTodos("/completed")))}
-        >
-          Completed
-        </Sections>
-      </Nav>
-      <Addbar />
-      <Route exact path="/" component={Todos} />
-      <Route exact path="/active" component={Todos} />
-      <Route exact path="/completed" component={Todos} />
+
+      <Nav />
+
+      <Switch>
+        <Route exact path="/">
+          <Addbar />
+          <Todos />
+        </Route>
+        <Route exact path="/active">
+          <Addbar />
+          <Todos />
+        </Route>
+        <Route exact path="/completed" component={Todos} />
+      </Switch>
     </Background>
   );
 }
@@ -63,14 +41,4 @@ const Background = styled.div`
   margin: auto;
 `;
 
-const Sections = styled(NavLink)`
-  height: 100%;
-  padding: 0rem 1rem;
-  text-decoration: none;
-  font-weight: 500;
-  color: #333333;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
