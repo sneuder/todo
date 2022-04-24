@@ -41,7 +41,7 @@ const Todos = () => {
             <Label done={done}>{name}</Label>
             <IconDelete
               icon={faTrashCan}
-              onClick={() => dispatch(updateTodos(removeTodo(todo)))}
+              onClick={() => dispatch(updateTodos(removeTodo(todo, todos)))}
             />
           </ContainerTodo>
         );

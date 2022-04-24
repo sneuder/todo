@@ -42,8 +42,7 @@ export const completeTodo = (todo) => {
   return todos;
 };
 
-export const removeTodo = (todo) => {
-  let todos = JSON.parse(localStorage.getItem("todos-todoapp")) || [];
+export const removeTodo = (todo, todos) => {
   todos = todos.filter((t) => t.id !== todo.id);
   localStorage.setItem("todos-todoapp", JSON.stringify(todos));
   return todos;
