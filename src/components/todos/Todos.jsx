@@ -5,7 +5,12 @@ import { useLocation } from "react-router-dom";
 import { ContainerTodo, Input, Label, Delete, IconDelete } from "./Components";
 
 import { updateTodos } from "../../redux/actions";
-import { completeTodo, getTodos, removeAllTodos } from "../../utils/utils";
+import {
+  completeTodo,
+  getTodos,
+  removeAllTodos,
+  removeTodo,
+} from "../../utils/utils";
 
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
@@ -34,7 +39,10 @@ const Todos = () => {
               }}
             />
             <Label>{name}</Label>
-            <IconDelete icon={faTrashCan} />
+            <IconDelete
+              icon={faTrashCan}
+              onClick={() => dispatch(updateTodos(removeTodo(todo)))}
+            />
           </ContainerTodo>
         );
       })}
