@@ -22,3 +22,7 @@ export const Input = styled.input`
 export const Label = styled.label`
   margin-left: 0.5rem;
 `;
+
+export const Delete = styled.button`
+  padding: 0.5rem;
+`

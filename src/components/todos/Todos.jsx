@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-import {ContainerTodo, Input, Label} from "./Components";
+import { ContainerTodo, Input, Label, Delete } from "./Components";
 
 import { updateTodos } from "../../redux/actions";
-import { completeTodo, getTodos } from "../../utils/utils";
-
+import { completeTodo, getTodos, removeAllTodos } from "../../utils/utils";
 
 const Todos = () => {
   const todos = useSelector((state) => state.shownTodos);
@@ -36,10 +35,14 @@ const Todos = () => {
           </ContainerTodo>
         );
       })}
+
+      {pathname === "/completed" && todos?.length !== 0 && (
+        <Delete onClick={() => dispatch(updateTodos(removeAllTodos(todos)))}>
+          Delete
+        </Delete>
+      )}
     </div>
   );
 };
-
-
 
 export default Todos;
